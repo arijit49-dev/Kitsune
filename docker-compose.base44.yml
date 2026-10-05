@@ -1,0 +1,76 @@
+services:
+  web:
+    image: node:20-alpine
+    working_dir: /app
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - NEXT_PUBLIC_API_URL=https://8000-${BASE44_PUBLIC_HOST_SUFFIX}
+      - NEXT_PUBLIC_POCKETBASE_URL=https://8090-${BASE44_PUBLIC_HOST_SUFFIX}
+      - BASE44_PUBLIC_HOST_SUFFIX=${BASE44_PUBLIC_HOST_SUFFIX}
+    command: ["sh", "-ec", "npm install && exec npm run dev -- -H 0.0.0.0 -p 3000"]
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:3000/api/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 90s
+    restart: on-failure
+    depends_on:
+      pocketbase:
+        condition: service_healthy
+
+  pocketbase:
+    build:
+      context: ./pocketbase
+    ports:
+      - "8090:8090"
+    volumes:
+      - pb_data:/pb_data
+      - ./docs/pb.json:/pb_collections.json:ro
+    environment:
+      - PB_ADMIN_EMAIL=admin@kitsune.local
+      - PB_ADMIN_PASSWORD=admin123456
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://localhost:8090/api/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 15s
+    restart: on-failure
+
+  pocketbase-init:
+    image: python:3.11-slim
+    depends_on:
+      pocketbase:
+        condition: service_healthy
+    volumes:
+      - ./docs/pb.json:/pb_collections.json:ro
+      - ./pocketbase/init-collections.py:/init-collections.py:ro
+    environment:
+      - PB_URL=http://pocketbase:8090
+      - PB_ADMIN_EMAIL=admin@kitsune.local
+      - PB_ADMIN_PASSWORD=admin123456
+    command: ["python", "/init-collections.py"]
+    restart: "no"
+
+  api:
+    build:
+      context: ./miruro-api
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/')"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    restart: on-failure
+
+volumes:
+  pb_data:
