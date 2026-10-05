@@ -37,6 +37,38 @@ def api(method, path, token=None, data=None):
             return e.code, {}
 
 
+def configure_google_oauth(token):
+    """Enable the Google OAuth2 provider once credentials are available."""
+    client_id = os.environ.get("GOOGLE_CLIENT_ID", "").strip()
+    client_secret = os.environ.get("GOOGLE_CLIENT_SECRET", "").strip()
+
+    if not client_id or not client_secret:
+        print("[init] Google OAuth2 credentials not set, skipping")
+        return
+
+    status, users = api("GET", "/api/collections/users", token=token)
+    if status != 200:
+        print(f"[init] Could not load users collection: {status}")
+        return
+
+    oauth2 = dict(users.get("oauth2") or {})
+    providers = [p for p in oauth2.get("providers", []) if p.get("name") != "google"]
+    providers.append({
+        "name": "google",
+        "clientId": client_id,
+        "clientSecret": client_secret,
+    })
+    oauth2["enabled"] = True
+    oauth2["providers"] = providers
+
+    status, resp = api("PATCH", f"/api/collections/{users['id']}", token=token,
+                       data={"oauth2": oauth2})
+    if status == 200:
+        print("[init] Google OAuth2 provider enabled")
+    else:
+        print(f"[init] Google provider update failed: {status} {json.dumps(resp)[:200]}")
+
+
 def main():
     # Wait for PocketBase
     for _ in range(30):
@@ -148,6 +180,8 @@ def main():
                 print(f"[init] Exists: {name}")
             else:
                 print(f"[init] Failed {name}: {status} {json.dumps(resp)[:200]}")
+
+    configure_google_oauth(token)
 
     print("[init] Done")
 

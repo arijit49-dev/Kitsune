@@ -3,7 +3,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import Button from "./common/custom-button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { Input } from "./ui/input";
-import DiscordIcon from "@/icons/discord";
+import GoogleIcon from "@/icons/google";
 import { pb } from "@/lib/pocketbase";
 import { toast } from "sonner";
 import { useAuthStore } from "@/store/auth-store";
@@ -112,26 +112,42 @@ function LoginPopoverButton() {
     });
   };
 
-  const loginWithDiscord = async () => {
-    const res = await pb.collection("users").authWithOAuth2({
-      provider: "discord",
-    });
-
-    if (pb.authStore.isValid && pb.authStore.record) {
-      await pb.collection("users").update(pb.authStore.record?.id!, {
-        username: res.meta?.username,
+  const loginWithGoogle = async () => {
+    try {
+      const res = await pb.collection("users").authWithOAuth2({
+        provider: "google",
       });
 
-      toast.success("Login successful", { style: { background: "green" } });
-      auth.setAuth({
-        id: pb.authStore.record.id,
-        email: pb.authStore.record.email,
-        username: pb.authStore.record.username,
-        avatar: pb.authStore.record.avatar,
-        collectionId: pb.authStore.record.collectionId,
-        collectionName: pb.authStore.record.collectionName,
-        autoSkip: pb.authStore.record.autoSkip,
-        created: pb.authStore.record.created,
+      if (pb.authStore.isValid && pb.authStore.record) {
+        const record = pb.authStore.record;
+        let username = record.username;
+
+        if (!username) {
+          const updated = await pb.collection("users").update(record.id, {
+            username:
+              res.meta?.username ||
+              res.meta?.name ||
+              record.email?.split("@")[0],
+          });
+          username = updated.username;
+        }
+
+        toast.success("Login successful", { style: { background: "green" } });
+        auth.setAuth({
+          id: record.id,
+          email: record.email,
+          username,
+          avatar: record.avatar,
+          collectionId: record.collectionId,
+          collectionName: record.collectionName,
+          autoSkip: record.autoSkip,
+          created: record.created,
+        });
+      }
+    } catch (e) {
+      console.error("Google login error:", e);
+      toast.error("Google sign-in is not available right now.", {
+        style: { background: "red" },
       });
     }
   };
@@ -200,12 +216,12 @@ function LoginPopoverButton() {
             <hr className="text-white text-xs text-center" />
             <Button
               variant="default"
-              className="bg-blue-600 hover:bg-blue-800 text-white w-full text-xs"
+              className="w-full bg-white text-xs text-black hover:bg-gray-200"
               size="sm"
-              onClick={loginWithDiscord}
+              onClick={loginWithGoogle}
             >
-              <DiscordIcon className="mr-2" />
-              Login with Discord
+              <GoogleIcon className="mr-2 h-4 w-4" />
+              Login with Google
             </Button>
           </TabsContent>
           <TabsContent value="signup" className="flex flex-col gap-2">
@@ -265,12 +281,12 @@ function LoginPopoverButton() {
             <hr className="text-white text-xs text-center" />
             <Button
               variant="default"
-              className="bg-blue-600 hover:bg-blue-800 text-white w-full text-xs"
+              className="w-full bg-white text-xs text-black hover:bg-gray-200"
               size="sm"
-              onClick={loginWithDiscord}
+              onClick={loginWithGoogle}
             >
-              <DiscordIcon className="mr-2" />
-              Signup with Discord
+              <GoogleIcon className="mr-2 h-4 w-4" />
+              Signup with Google
             </Button>
           </TabsContent>
         </Tabs>

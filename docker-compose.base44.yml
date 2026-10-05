@@ -36,6 +36,8 @@ services:
     environment:
       - PB_ADMIN_EMAIL=admin@kitsune.local
       - PB_ADMIN_PASSWORD=admin123456
+    env_file:
+      - /run/base44/app.env
     healthcheck:
       test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://localhost:8090/api/health"]
       interval: 10s
