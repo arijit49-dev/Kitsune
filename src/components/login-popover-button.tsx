@@ -140,10 +140,10 @@ function LoginPopoverButton() {
     <Popover>
       <PopoverTrigger asChild>
         <Button
-          variant="outline"
-          className="bg-white text-md text-black hover:bg-gray-200 hover:text-black transition-all duration-300"
+          variant="ghost"
+          className="px-1 text-sm font-semibold text-white transition-colors duration-300 hover:bg-transparent hover:text-violet-400"
         >
-          Login
+          Sign in
         </Button>
       </PopoverTrigger>
       <PopoverContent

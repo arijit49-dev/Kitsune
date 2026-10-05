@@ -8,6 +8,7 @@ import Image from "next/image";
 import { ROUTES } from "@/constants/routes";
 import { Badge } from "./ui/badge";
 import { Clock, Play } from "lucide-react";
+import SectionHeading from "./section-heading";
 
 function AnimeSchedule() {
   const currentDate = new Date();
@@ -46,9 +47,9 @@ function AnimeSchedule() {
   }
 
   return (
-    <Container className="flex flex-col gap-6 py-10 items-start">
+    <Container id="schedule" className="flex flex-col gap-6 py-10 items-start">
       <div className="flex flex-col gap-1">
-        <h5 className="text-2xl md:text-3xl font-bold text-white">Estimated Schedule</h5>
+        <SectionHeading eyebrow="This Week" title="Estimated Schedule" />
         <p className="text-sm text-gray-400">Track upcoming episode releases for this week</p>
       </div>
 
@@ -69,7 +70,7 @@ function AnimeSchedule() {
               <TabsTrigger
                 key={day}
                 value={day}
-                className="shrink-0 flex items-center justify-between px-4 py-3 rounded-lg text-left transition-all data-[state=active]:bg-[#e9376b] data-[state=active]:text-white hover:bg-slate-800/60"
+                className="shrink-0 flex items-center justify-between px-4 py-3 rounded-lg text-left transition-all data-[state=active]:bg-[#8b5cf6] data-[state=active]:text-white hover:bg-slate-800/60"
               >
                 <div className="flex flex-col items-start">
                   <span className="font-bold text-sm uppercase tracking-wider">
@@ -136,7 +137,7 @@ function AnimeSchedule() {
                           <div className="flex flex-col justify-between flex-1 min-w-0 py-0.5">
                             <div className="flex flex-col gap-1">
                               <span className="text-xs text-gray-400 flex items-center gap-1 font-medium">
-                                <Clock className="h-3 w-3 text-[#e9376b]" />
+                                <Clock className="h-3 w-3 text-[#8b5cf6]" />
                                 {timeFormatted}
                               </span>
                               <h3 className="text-sm font-bold text-white line-clamp-2 leading-snug">
@@ -145,13 +146,13 @@ function AnimeSchedule() {
                             </div>
 
                             <div className="flex items-center justify-between gap-2 mt-2">
-                              <Badge className="bg-[#e9376b]/20 text-[#e9376b] border border-[#e9376b]/40 text-[10px] px-2 py-0.5">
+                              <Badge className="bg-[#8b5cf6]/20 text-[#8b5cf6] border border-[#8b5cf6]/40 text-[10px] px-2 py-0.5">
                                 Ep {anime.episode}
                               </Badge>
                               <Link href={`${ROUTES.ANIME_DETAILS}/${anime.id}`}>
                                 <Button
                                   size="sm"
-                                  className="h-7 text-xs bg-slate-800 hover:bg-[#e9376b] text-white px-2.5 rounded-lg flex items-center gap-1 transition"
+                                  className="h-7 text-xs bg-slate-800 hover:bg-[#8b5cf6] text-white px-2.5 rounded-lg flex items-center gap-1 transition"
                                 >
                                   <Play className="h-3 w-3 fill-current" /> Details
                                 </Button>

@@ -7,7 +7,6 @@ import { cn } from "@/lib/utils";
 import Container from "./container";
 import { Separator } from "./ui/separator";
 
-import { nightTokyo } from "@/utils/fonts";
 import { ROUTES } from "@/constants/routes";
 import React, { ReactNode, useEffect, useState } from "react";
 
@@ -89,10 +88,10 @@ const NavBar = () => {
       className={cn([
         "h-fit w-full",
         "sticky top-0 z-[100] duration-300",
-        isHeaderFixed ? "fixed bg-gradient-to-b from-slate-700" : "",
+        isHeaderFixed ? "fixed" : "",
         isHeaderSticky
-          ? "bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10 bg-slate-900"
-          : "",
+          ? "border-b border-white/5 bg-[#0a0a0a]/80 backdrop-blur-xl"
+          : "bg-gradient-to-b from-[#0a0a0a] to-transparent",
       ])}
     >
       {!hasSeenDomainChangeBanner && (
@@ -119,34 +118,33 @@ const NavBar = () => {
           </AlertTitle>
         </Alert>
       )}
-      <Container className="flex items-center justify-between py-2 gap-20 ">
+      <Container className="flex items-center gap-4 py-3">
         <Link
           href={ROUTES.HOME}
-          className="flex items-center gap-1 cursor-pointer"
+          className="flex shrink-0 cursor-pointer items-center gap-2"
         >
-          <Image src="/icon.png" alt="logo" width={70} height={70} />
-          <h1
-            className={cn([
-              nightTokyo.className,
-              "text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-pink-600 tracking-widest",
-            ])}
-          >
-            Kitsunee
+          <Image
+            src="/icon.png"
+            alt="logo"
+            width={36}
+            height={36}
+            className="rounded-lg"
+          />
+          <h1 className="hidden text-lg font-bold tracking-tight text-white sm:block">
+            Kitsune
           </h1>
         </Link>
 
-        <div className="hidden lg:flex items-center gap-10 ml-20">
-          {menuItems.map((menu, idx) => (
-            <Link href={menu.href || "#"} key={idx}>
-              {menu.title}
-            </Link>
-          ))}
+        <div className="flex flex-1 justify-center">
+          <div className="w-full max-w-xl">
+            <SearchBar />
+          </div>
         </div>
-        <div className="w-1/3 hidden lg:flex items-center gap-5">
-          <SearchBar />
+
+        <div className="hidden shrink-0 items-center gap-3 lg:flex">
           {auth.auth ? <NavbarAvatar auth={auth} /> : <LoginPopoverButton />}
         </div>
-        <div className="lg:hidden flex items-center gap-5">
+        <div className="flex shrink-0 items-center gap-3 lg:hidden">
           <MobileMenuSheet trigger={<MenuIcon suppressHydrationWarning />} />
           {auth.auth ? <NavbarAvatar auth={auth} /> : <LoginPopoverButton />}
         </div>

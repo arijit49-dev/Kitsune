@@ -11,7 +11,7 @@ import Container from "./container";
 import { Button } from "./ui/button";
 
 import React from "react";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, Info, Play, Star } from "lucide-react";
 
 import { ROUTES } from "@/constants/routes";
 import { ButtonLink } from "./common/button-link";
@@ -40,20 +40,20 @@ const HeroSection = (props: IHeroSectionProps) => {
           ))}
         </CarouselContent>
       </Carousel>
-      <div className="absolute hidden md:flex items-center gap-5 right-10 3xl:bottom-10 bottom-24 z-50 isolate">
+      <div className="absolute bottom-24 right-10 z-50 isolate hidden items-center gap-3 md:flex 3xl:bottom-10">
         <Button
           onClick={() => {
             api?.scrollPrev();
           }}
-          className="rounded-full bg-transparent border border-white h-10 w-10 hover:bg-slate-500"
+          className="h-10 w-10 rounded-full border border-white/20 bg-black/40 text-white backdrop-blur hover:bg-violet-600"
         >
-          <ArrowLeft className="text-white shrink-0" />
+          <ArrowLeft className="shrink-0" />
         </Button>
         <Button
           onClick={() => api?.scrollNext()}
-          className="rounded-full bg-transparent border border-white h-10 w-10 hover:bg-slate-500"
+          className="h-10 w-10 rounded-full border border-white/20 bg-black/40 text-white backdrop-blur hover:bg-violet-600"
         >
-          <ArrowRight className="text-white shrink-0" />
+          <ArrowRight className="shrink-0" />
         </Button>
       </div>
     </div>
@@ -75,46 +75,65 @@ const HeroCarouselItem = ({ anime }: { anime: MediaList }) => {
       style={{ backgroundImage: `url(${bgImage})` }}
     >
       {/* Gradient Overlay */}
-      <div className="absolute h-full w-full inset-0 m-auto bg-gradient-to-r from-slate-900 via-slate-900/80 to-transparent z-10"></div>
-      <div className="absolute h-full w-full inset-0 m-auto bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent z-10"></div>
+      <div className="absolute inset-0 z-10 h-full w-full bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/85 to-transparent"></div>
+      <div className="absolute inset-0 z-10 h-full w-full bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/40 to-transparent"></div>
 
       {/* Content Section */}
       <div className="w-full h-[calc(100%-5.25rem)] relative z-20">
         <Container className="w-full h-full flex flex-col justify-end md:justify-center pb-10">
-          <div className="space-y-3 lg:w-[45vw]">
-            <h1 className="text-3xl md:text-5xl font-black text-white line-clamp-2">
+          <div className="space-y-4 lg:w-[45vw]">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-violet-400">
+              Featured
+            </span>
+            <h1 className="line-clamp-2 text-3xl font-black text-white md:text-5xl">
               {title}
             </h1>
 
             <div className="flex flex-wrap items-center gap-2 text-xs">
               {anime.format && (
-                <Badge className="bg-[#e9376b] text-white font-bold">
+                <Badge className="rounded-full border border-white/10 bg-white/5 text-gray-200">
                   {anime.format}
                 </Badge>
               )}
               {anime.seasonYear && (
-                <Badge variant="outline" className="text-gray-300 border-gray-600">
-                  {anime.season ? `${anime.season} ` : ""}{anime.seasonYear}
+                <Badge
+                  variant="outline"
+                  className="rounded-full border-white/10 text-gray-300"
+                >
+                  {anime.season ? `${anime.season} ` : ""}
+                  {anime.seasonYear}
                 </Badge>
               )}
               {!!anime.averageScore && (
-                <Badge variant="secondary" className="bg-yellow-500/20 text-yellow-300 border border-yellow-500/40">
-                  ⭐ {anime.averageScore}% Score
+                <Badge className="rounded-full border border-violet-500/40 bg-violet-500/15 text-violet-300">
+                  <Star className="mr-1 h-3 w-3 fill-violet-300" />
+                  {(anime.averageScore / 10).toFixed(1)}
                 </Badge>
               )}
-              {anime.genres?.slice(0, 3).map((g) => (
-                <span key={g} className="text-gray-400 text-xs">
-                  • {g}
+              {anime.genres?.slice(0, 4).map((g) => (
+                <span
+                  key={g}
+                  className="rounded-full border border-white/10 bg-black/40 px-3 py-1 text-xs text-gray-300 backdrop-blur"
+                >
+                  {g}
                 </span>
               ))}
             </div>
 
-            <div className="flex items-center gap-5 !mt-6">
+            <div className="!mt-6 flex flex-wrap items-center gap-3">
               <ButtonLink
                 href={`${ROUTES.ANIME_DETAILS}/${anime.id}`}
-                className="h-10 text-md bg-[#e9376b] text-white hover:bg-[#e9376b]"
+                className="h-10 rounded-full bg-violet-600 px-5 text-sm font-semibold text-white hover:bg-violet-500"
               >
-                Learn More
+                <Play className="mr-2 h-4 w-4 fill-current" />
+                View Details
+              </ButtonLink>
+              <ButtonLink
+                href={`${ROUTES.ANIME_DETAILS}/${anime.id}`}
+                className="h-10 rounded-full border border-white/20 bg-transparent px-5 text-sm font-semibold text-white hover:bg-white/10"
+              >
+                <Info className="mr-2 h-4 w-4" />
+                More Info
               </ButtonLink>
             </div>
           </div>
