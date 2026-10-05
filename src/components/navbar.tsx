@@ -124,14 +124,14 @@ const NavBar = () => {
           className="flex shrink-0 cursor-pointer items-center gap-2"
         >
           <Image
-            src="/icon.png"
-            alt="logo"
+            src="https://media.base44.com/images/public/6ac378e8c946a955146d522a/02a885b0a_generated_d80d421c.png"
+            alt="Mekko Streams logo"
             width={36}
             height={36}
             className="rounded-lg"
           />
           <h1 className="hidden text-lg font-bold tracking-tight text-white sm:block">
-            Kitsune
+            Mekko Streams
           </h1>
         </Link>
 
