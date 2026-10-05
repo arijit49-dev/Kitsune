@@ -267,7 +267,7 @@ const VideoPlayerSection = () => {
 
   if (!activeEpisodeId || isLoadingData) {
     return (
-      <div className="h-auto aspect-video lg:max-h-[calc(100vh-150px)] min-h-[20vh] sm:min-h-[30vh] md:min-h-[40vh] lg:min-h-[60vh] w-full animate-pulse bg-slate-800 rounded-xl"></div>
+      <div className="h-auto aspect-video lg:max-h-[calc(100vh-150px)] min-h-[20vh] sm:min-h-[30vh] md:min-h-[40vh] lg:min-h-[60vh] w-full animate-pulse bg-white/5 rounded-xl"></div>
     );
   }
 
@@ -279,7 +279,7 @@ const VideoPlayerSection = () => {
 
     return (
       <div className="flex flex-col gap-4 w-full">
-        <div className="relative w-full h-auto aspect-video min-h-[20vh] sm:min-h-[30vh] md:min-h-[40vh] lg:min-h-[60vh] max-h-[500px] lg:max-h-[calc(100vh-150px)] bg-black overflow-hidden rounded-xl border border-slate-800">
+        <div className="relative w-full h-auto aspect-video min-h-[20vh] sm:min-h-[30vh] md:min-h-[40vh] lg:min-h-[60vh] max-h-[500px] lg:max-h-[calc(100vh-150px)] bg-black overflow-hidden rounded-xl border border-white/5">
           <iframe
             key={`${fallbackAnimeId}-${fallbackEpId}-${activeCategory}`}
             src={fallbackSrc}
@@ -289,7 +289,7 @@ const VideoPlayerSection = () => {
             className="w-full h-full border-0"
           ></iframe>
         </div>
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 bg-[#0f172a] rounded-xl border border-slate-800">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 bg-[#141414] rounded-xl border border-white/5">
           <div className="flex flex-wrap items-center gap-3">
             <span className="text-xs font-bold text-gray-400 tracking-wider">CATEGORY:</span>
             <Button
@@ -299,8 +299,8 @@ const VideoPlayerSection = () => {
               onClick={() => handleCategoryChange("sub")}
               className={`h-8 px-4 text-xs font-semibold rounded-lg flex items-center gap-1.5 transition ${
                 activeCategory === "sub"
-                  ? "bg-[#e9376b] text-white hover:bg-[#e9376b]"
-                  : "bg-slate-800 text-gray-400 hover:bg-slate-700"
+                  ? "bg-[#8b5cf6] text-white hover:bg-[#8b5cf6]"
+                  : "bg-white/5 text-gray-400 hover:bg-white/10"
               }`}
             >
               <Captions className="h-3.5 w-3.5" /> SUB
@@ -313,7 +313,7 @@ const VideoPlayerSection = () => {
               className={`h-8 px-4 text-xs font-semibold rounded-lg flex items-center gap-1.5 transition ${
                 activeCategory === "dub"
                   ? "bg-green-600 text-white hover:bg-green-600"
-                  : "bg-slate-800 text-gray-400 hover:bg-slate-700"
+                  : "bg-white/5 text-gray-400 hover:bg-white/10"
               }`}
             >
               <Mic className="h-3.5 w-3.5" /> DUB
@@ -323,7 +323,7 @@ const VideoPlayerSection = () => {
             size="sm"
             variant="outline"
             onClick={() => setUseFallback(false)}
-            className="h-8 px-3 text-xs border-slate-700 bg-slate-800/80 hover:bg-slate-700 text-gray-200 flex items-center gap-1.5 shrink-0 self-start sm:self-auto"
+            className="h-8 px-3 text-xs border-white/10 bg-white/5 hover:bg-white/10 text-gray-200 flex items-center gap-1.5 shrink-0 self-start sm:self-auto"
           >
             <Tv className="h-3.5 w-3.5 text-blue-400" /> Try Primary Player
           </Button>
@@ -360,7 +360,7 @@ const VideoPlayerSection = () => {
         autoSkip={autoSkip}
         onError={() => setUseFallback(true)}
       />
-      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 w-full p-5 bg-[#0f172a] border-t border-slate-800">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 w-full p-5 bg-[#141414] border-t border-white/5">
         <div className="flex flex-col gap-3 w-full md:w-auto">
           <div className="flex flex-wrap items-center gap-3">
             <Captions className="text-red-400 h-4 w-4 shrink-0" />
@@ -378,8 +378,8 @@ const VideoPlayerSection = () => {
                   key={`sub-${pName}`}
                   className={`uppercase font-bold text-xs px-3 transition-all ${
                     isActive
-                      ? "bg-[#e9376b] text-white shadow-md ring-2 ring-[#e9376b]/40 scale-105"
-                      : "bg-slate-800/80 text-gray-300 hover:bg-slate-700 hover:text-white"
+                      ? "bg-[#8b5cf6] text-white shadow-md ring-2 ring-[#8b5cf6]/40 scale-105"
+                      : "bg-white/5 text-gray-300 hover:bg-white/10 hover:text-white"
                   }`}
                   onClick={() => handleProviderSelect(pName, "sub")}
                 >
@@ -407,7 +407,7 @@ const VideoPlayerSection = () => {
                     className={`uppercase font-bold text-xs px-3 transition-all ${
                       isActive
                         ? "bg-green-600 text-white shadow-md ring-2 ring-green-500/40 scale-105"
-                        : "bg-slate-800/80 text-gray-300 hover:bg-slate-700 hover:text-white"
+                        : "bg-white/5 text-gray-300 hover:bg-white/10 hover:text-white"
                     }`}
                     onClick={() => handleProviderSelect(pName, "dub")}
                   >
@@ -423,7 +423,7 @@ const VideoPlayerSection = () => {
             size="sm"
             variant="outline"
             onClick={() => setUseFallback(true)}
-            className="h-8 px-3 text-xs border-slate-700 bg-slate-800/80 hover:bg-slate-700 text-gray-200 flex items-center gap-1.5"
+            className="h-8 px-3 text-xs border-white/10 bg-white/5 hover:bg-white/10 text-gray-200 flex items-center gap-1.5"
           >
             <Tv className="h-3.5 w-3.5 text-yellow-400" /> Switch to Fallback Player
           </Button>

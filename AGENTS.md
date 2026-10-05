@@ -50,6 +50,21 @@ with a clean/residential IP and point `NEXT_PUBLIC_API_URL` at it.
 - Discord OAuth (optional) is configured in the PocketBase admin dashboard, not in the
   Next.js app's env.
 
+## Design system (archive UI)
+
+The UI follows an "Internet Anime Archive" aesthetic. Keep it consistent when adding
+pages/components:
+
+- Surfaces: page `bg-[#0a0a0a]`, raised panels `bg-[#141414]`, hairlines `border-white/5`,
+  muted fills `bg-white/5` (hover `bg-white/10`).
+- Accent: violet `#8b5cf6` / Tailwind `violet-500`-`600`. The legacy pink `#e9376b`
+  accent has been fully replaced — do not reintroduce it.
+- Section headings use `src/components/section-heading.tsx` (uppercase violet eyebrow +
+  bold white title). Inline section titles use `text-sm font-bold uppercase tracking-[0.18em] text-gray-400`.
+- Cards: `rounded-2xl ring-1 ring-white/5`, hover `ring-violet-500/40`.
+- `BottomNav` is the floating glass nav (mobile/tablet only, `lg:hidden`); its "Calendar"
+  item deep-links to `/#schedule` (the `AnimeSchedule` section on the homepage).
+
 ## Verification
 
 - `curl http://localhost:3000/api/health` → `{"status":"up and running"}`

@@ -35,13 +35,13 @@ const FeaturedCollection = ({ featuredAnime, loading }: Props) => {
 const LoadingSkeleton = () => {
   return (
     <Container className="flex flex-col gap-5 py-10 items-center lg:items-start ">
-      <div className="h-10 w-[15.625rem] animate-pulse bg-slate-700"></div>
+      <div className="h-10 w-[15.625rem] animate-pulse bg-white/5"></div>
       <div className="grid w-full gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {[1, 1, 1].map((_, idx) => {
           return (
             <div
               key={idx}
-              className="rounded-xl h-[15.625rem] w-[100%] md:h-[18.75rem] animate-pulse bg-slate-700"
+              className="rounded-xl h-[15.625rem] w-[100%] md:h-[18.75rem] animate-pulse bg-white/5"
             ></div>
           );
         })}

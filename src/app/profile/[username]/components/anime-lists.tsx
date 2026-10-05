@@ -42,7 +42,7 @@ function AnimeLists({ status, userId }: Props) {
         {[1, 2, 3, 4, 5, 6, 7, 8].map((idx) => (
           <div
             key={idx}
-            className="rounded-xl h-[15.625rem] min-w-[10.625rem] md:h-[18.75rem] animate-pulse bg-slate-800/80"
+            className="rounded-xl h-[15.625rem] min-w-[10.625rem] md:h-[18.75rem] animate-pulse bg-white/5"
           ></div>
         ))}
       </div>

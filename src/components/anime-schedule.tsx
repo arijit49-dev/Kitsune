@@ -61,7 +61,7 @@ function AnimeSchedule() {
         className="w-full flex flex-col md:flex-row gap-6"
       >
         {/* Vertical Tabs List */}
-        <TabsList className="flex flex-row md:flex-col justify-start items-stretch gap-2 w-full md:w-56 shrink-0 h-auto md:h-fit border-none overflow-x-auto no-scrollbar bg-secondary/30 p-2 rounded-xl border border-slate-800/80">
+        <TabsList className="flex flex-row md:flex-col justify-start items-stretch gap-2 w-full md:w-56 shrink-0 h-auto md:h-fit border-none overflow-x-auto no-scrollbar bg-secondary/30 p-2 rounded-xl border border-white/10">
           {daysOfWeek.map((day) => {
             const dateObj = getDateForWeekday(day);
             const isToday = day === currentDay;
@@ -70,7 +70,7 @@ function AnimeSchedule() {
               <TabsTrigger
                 key={day}
                 value={day}
-                className="shrink-0 flex items-center justify-between px-4 py-3 rounded-lg text-left transition-all data-[state=active]:bg-[#8b5cf6] data-[state=active]:text-white hover:bg-slate-800/60"
+                className="shrink-0 flex items-center justify-between px-4 py-3 rounded-lg text-left transition-all data-[state=active]:bg-[#8b5cf6] data-[state=active]:text-white hover:bg-white/5"
               >
                 <div className="flex flex-col items-start">
                   <span className="font-bold text-sm uppercase tracking-wider">
@@ -114,11 +114,11 @@ function AnimeSchedule() {
                       return (
                         <div
                           key={`${anime.id}-${anime.episode}-${idx}`}
-                          className="flex flex-row gap-3 p-3 bg-secondary/40 border border-slate-800/60 hover:border-slate-700 rounded-xl hover:bg-secondary/70 transition group relative overflow-hidden"
+                          className="flex flex-row gap-3 p-3 bg-secondary/40 border border-white/10 hover:border-white/10 rounded-xl hover:bg-secondary/70 transition group relative overflow-hidden"
                         >
                           {/* Small Poster Thumbnail */}
                           {anime.poster ? (
-                            <div className="h-24 w-16 shrink-0 overflow-hidden rounded-lg relative bg-slate-800">
+                            <div className="h-24 w-16 shrink-0 overflow-hidden rounded-lg relative bg-white/5">
                               <Image
                                 src={anime.poster}
                                 alt={anime.name}
@@ -128,7 +128,7 @@ function AnimeSchedule() {
                               />
                             </div>
                           ) : (
-                            <div className="h-24 w-16 shrink-0 bg-slate-800 rounded-lg flex items-center justify-center">
+                            <div className="h-24 w-16 shrink-0 bg-white/5 rounded-lg flex items-center justify-center">
                               <Clock className="h-6 w-6 text-gray-500" />
                             </div>
                           )}
@@ -152,7 +152,7 @@ function AnimeSchedule() {
                               <Link href={`${ROUTES.ANIME_DETAILS}/${anime.id}`}>
                                 <Button
                                   size="sm"
-                                  className="h-7 text-xs bg-slate-800 hover:bg-[#8b5cf6] text-white px-2.5 rounded-lg flex items-center gap-1 transition"
+                                  className="h-7 text-xs bg-white/5 hover:bg-[#8b5cf6] text-white px-2.5 rounded-lg flex items-center gap-1 transition"
                                 >
                                   <Play className="h-3 w-3 fill-current" /> Details
                                 </Button>
@@ -179,21 +179,21 @@ const LoadingSkeleton = () => {
       {[1, 2, 3, 4, 5, 6].map((idx) => (
         <div
           key={idx}
-          className="flex flex-row gap-3 p-3 bg-secondary/30 border border-slate-800/60 rounded-xl animate-pulse"
+          className="flex flex-row gap-3 p-3 bg-secondary/30 border border-white/10 rounded-xl animate-pulse"
         >
           {/* Poster Skeleton */}
-          <div className="h-24 w-16 shrink-0 bg-slate-800 rounded-lg"></div>
+          <div className="h-24 w-16 shrink-0 bg-white/5 rounded-lg"></div>
 
           {/* Lines Skeleton */}
           <div className="flex flex-col justify-between flex-1 min-w-0 py-0.5">
             <div className="flex flex-col gap-2">
-              <div className="h-3 w-16 bg-slate-800 rounded"></div>
-              <div className="h-4 w-4/5 bg-slate-800 rounded"></div>
+              <div className="h-3 w-16 bg-white/5 rounded"></div>
+              <div className="h-4 w-4/5 bg-white/5 rounded"></div>
             </div>
 
             <div className="flex items-center justify-between gap-2 mt-2">
-              <div className="h-5 w-12 bg-slate-800 rounded-full"></div>
-              <div className="h-7 w-16 bg-slate-800 rounded-lg"></div>
+              <div className="h-5 w-12 bg-white/5 rounded-full"></div>
+              <div className="h-7 w-16 bg-white/5 rounded-lg"></div>
             </div>
           </div>
         </div>

@@ -204,7 +204,7 @@ const PlaylistSkeleton = () => {
       {[1, 1, 1, 1, 1, 1, 1, 1, 1].map((_, idx) => {
         return (
           <div
-            className="flex gap-5 items-center w-full relative !min-h-16 rounded-md  animate-pulse bg-slate-800"
+            className="flex gap-5 items-center w-full relative !min-h-16 rounded-md  animate-pulse bg-white/5"
             key={idx}
           ></div>
         );

@@ -149,18 +149,18 @@ const LoadingSkeleton = () => {
       <div className="w-full h-[calc(100%-5.25rem)] mt-[5.25rem] relative z-20">
         <Container className="w-full h-full flex flex-col justify-end md:justify-center pb-10">
           <div className="space-y-2 lg:w-[40vw]">
-            <div className="h-16 animate-pulse bg-slate-700 w-[75%]"></div>
-            <div className="h-40 animate-pulse w-full bg-slate-700"></div>
+            <div className="h-16 animate-pulse bg-white/5 w-[75%]"></div>
+            <div className="h-40 animate-pulse w-full bg-white/5"></div>
             <div className="flex items-center gap-5">
-              <span className="h-10 w-[7.5rem] animate-pulse bg-slate-700"></span>
-              <span className="h-10 w-[7.5rem] animate-pulse bg-slate-700"></span>
+              <span className="h-10 w-[7.5rem] animate-pulse bg-white/5"></span>
+              <span className="h-10 w-[7.5rem] animate-pulse bg-white/5"></span>
             </div>
           </div>
         </Container>
       </div>
       <div className="absolute hidden md:flex items-center gap-5 right-10 bottom-32 z-50 isolate">
-        <span className="h-10 w-10 rounded-full animate-pulse bg-slate-700"></span>
-        <span className="h-10 w-10 rounded-full animate-pulse bg-slate-700"></span>
+        <span className="h-10 w-10 rounded-full animate-pulse bg-white/5"></span>
+        <span className="h-10 w-10 rounded-full animate-pulse bg-white/5"></span>
       </div>
     </div>
   );

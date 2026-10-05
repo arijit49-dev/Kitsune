@@ -66,18 +66,18 @@ const CommentsSection = ({ animeId, animeTitle, episodeNumber }: Props) => {
   const totalComments = data?.pages[0]?.totalItems || 0;
 
   return (
-    <div className="flex flex-col gap-4 w-full py-6 bg-[#0f172a]/30 p-5 rounded-2xl border border-slate-800">
+    <div className="flex flex-col gap-4 w-full py-6 bg-[#141414]/30 p-5 rounded-2xl border border-white/5">
       {/* Collapsible Accordion Header */}
       <div
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-between cursor-pointer select-none border-b border-slate-800/80 pb-3 group"
+        className="flex items-center justify-between cursor-pointer select-none border-b border-white/10 pb-3 group"
       >
         <div className="flex items-center gap-3">
-          <MessageSquare className="h-5 w-5 text-[#e9376b]" />
-          <h3 className="text-lg md:text-xl font-bold text-white group-hover:text-[#e9376b] transition">
+          <MessageSquare className="h-5 w-5 text-[#8b5cf6]" />
+          <h3 className="text-lg md:text-xl font-bold text-white group-hover:text-[#8b5cf6] transition">
             Episode Comments
           </h3>
-          <span className="text-xs font-bold bg-[#e9376b]/20 text-[#e9376b] px-2.5 py-0.5 rounded-full border border-[#e9376b]/30">
+          <span className="text-xs font-bold bg-[#8b5cf6]/20 text-[#8b5cf6] px-2.5 py-0.5 rounded-full border border-[#8b5cf6]/30">
             {totalComments}
           </span>
         </div>
@@ -85,7 +85,7 @@ const CommentsSection = ({ animeId, animeTitle, episodeNumber }: Props) => {
         <Button
           size="sm"
           variant="ghost"
-          className="h-8 w-8 p-0 text-gray-400 group-hover:text-white hover:bg-slate-800 rounded-lg transition"
+          className="h-8 w-8 p-0 text-gray-400 group-hover:text-white hover:bg-white/10 rounded-lg transition"
         >
           {isOpen ? <ChevronUp className="h-5 w-5" /> : <ChevronDown className="h-5 w-5" />}
         </Button>
@@ -96,13 +96,13 @@ const CommentsSection = ({ animeId, animeTitle, episodeNumber }: Props) => {
         <div className="flex flex-col gap-6 pt-2">
           {/* Post Comment Input Form */}
           {auth ? (
-            <form onSubmit={handleSubmit} className="flex flex-col gap-3 bg-[#0f172a] p-4 rounded-xl border border-slate-800 shadow-sm">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-3 bg-[#141414] p-4 rounded-xl border border-white/5 shadow-sm">
               <textarea
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
                 placeholder="Share your thoughts about this episode..."
                 rows={3}
-                className="w-full bg-slate-900/90 text-white placeholder-gray-500 rounded-lg p-3 text-sm focus:outline-none focus:ring-1 focus:ring-[#e9376b] border border-slate-800 transition resize-none"
+                className="w-full bg-black/40 text-white placeholder-gray-500 rounded-lg p-3 text-sm focus:outline-none focus:ring-1 focus:ring-[#8b5cf6] border border-white/5 transition resize-none"
               />
 
               <div className="flex items-center justify-between">
@@ -112,7 +112,7 @@ const CommentsSection = ({ animeId, animeTitle, episodeNumber }: Props) => {
                     type="checkbox"
                     checked={spoil}
                     onChange={(e) => setSpoil(e.target.checked)}
-                    className="h-4 w-4 rounded bg-slate-900 border-slate-700 text-[#e9376b] focus:ring-0 focus:ring-offset-0 cursor-pointer accent-[#e9376b]"
+                    className="h-4 w-4 rounded bg-[#141414] border-white/10 text-[#8b5cf6] focus:ring-0 focus:ring-offset-0 cursor-pointer accent-[#8b5cf6]"
                   />
                   <span className="flex items-center gap-1">
                     <AlertTriangle className="h-3.5 w-3.5 text-yellow-500" /> Contains Spoilers
@@ -122,7 +122,7 @@ const CommentsSection = ({ animeId, animeTitle, episodeNumber }: Props) => {
                 <Button
                   type="submit"
                   disabled={addCommentMutation.isLoading || !content.trim()}
-                  className="bg-[#e9376b] hover:bg-[#e9376b]/90 text-white text-xs font-bold px-4 h-8 rounded-lg flex items-center gap-1.5 transition disabled:opacity-50"
+                  className="bg-[#8b5cf6] hover:bg-[#8b5cf6]/90 text-white text-xs font-bold px-4 h-8 rounded-lg flex items-center gap-1.5 transition disabled:opacity-50"
                 >
                   <Send className="h-3.5 w-3.5" />
                   {addCommentMutation.isLoading ? "Posting..." : "Post Comment"}
@@ -130,7 +130,7 @@ const CommentsSection = ({ animeId, animeTitle, episodeNumber }: Props) => {
               </div>
             </form>
           ) : (
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-4 bg-[#0f172a] rounded-xl border border-slate-800 text-sm">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-4 bg-[#141414] rounded-xl border border-white/5 text-sm">
               <p className="text-gray-400 text-xs sm:text-sm">Join the discussion! Log in to share comments with the community.</p>
               <LoginPopoverButton />
             </div>
@@ -140,7 +140,7 @@ const CommentsSection = ({ animeId, animeTitle, episodeNumber }: Props) => {
           {isLoading ? (
             <div className="flex flex-col gap-4">
               {[1, 2, 3].map((idx) => (
-                <div key={idx} className="h-20 w-full animate-pulse bg-slate-800/80 rounded-xl"></div>
+                <div key={idx} className="h-20 w-full animate-pulse bg-white/5 rounded-xl"></div>
               ))}
             </div>
           ) : comments.length > 0 ? (
@@ -154,7 +154,7 @@ const CommentsSection = ({ animeId, animeTitle, episodeNumber }: Props) => {
                 return (
                   <div
                     key={comment.id}
-                    className="flex gap-3 bg-[#0f172a]/60 p-4 rounded-xl border border-slate-800/80 hover:border-slate-800 transition"
+                    className="flex gap-3 bg-[#141414] p-4 rounded-xl border border-white/10 hover:border-white/5 transition"
                   >
                     <div className="shrink-0">
                       {user ? (
@@ -165,7 +165,7 @@ const CommentsSection = ({ animeId, animeTitle, episodeNumber }: Props) => {
                           className="h-10 w-10 rounded-full"
                         />
                       ) : (
-                        <div className="h-10 w-10 rounded-full bg-slate-800 flex items-center justify-center text-xs text-gray-400 font-bold">
+                        <div className="h-10 w-10 rounded-full bg-white/5 flex items-center justify-center text-xs text-gray-400 font-bold">
                           ?
                         </div>
                       )}
@@ -217,11 +217,11 @@ const CommentsSection = ({ animeId, animeTitle, episodeNumber }: Props) => {
                     variant="outline"
                     onClick={() => fetchNextPage()}
                     disabled={isFetchingNextPage}
-                    className="border-slate-700 bg-slate-800/80 hover:bg-slate-700 text-gray-200 text-xs font-bold px-6 h-9 rounded-xl flex items-center gap-2"
+                    className="border-white/10 bg-white/5 hover:bg-white/10 text-gray-200 text-xs font-bold px-6 h-9 rounded-xl flex items-center gap-2"
                   >
                     {isFetchingNextPage ? (
                       <>
-                        <Loader2 className="h-4 w-4 animate-spin text-[#e9376b]" /> Loading...
+                        <Loader2 className="h-4 w-4 animate-spin text-[#8b5cf6]" /> Loading...
                       </>
                     ) : (
                       "Load More Comments"
@@ -231,8 +231,8 @@ const CommentsSection = ({ animeId, animeTitle, episodeNumber }: Props) => {
               )}
             </div>
           ) : (
-            <div className="flex flex-col items-center justify-center p-8 bg-[#0f172a]/40 rounded-xl border border-slate-800 text-center">
-              <MessageSquare className="h-8 w-8 text-slate-600 mb-2" />
+            <div className="flex flex-col items-center justify-center p-8 bg-[#141414]/40 rounded-xl border border-white/5 text-center">
+              <MessageSquare className="h-8 w-8 text-gray-600 mb-2" />
               <p className="text-sm font-medium text-gray-400">No comments yet for Episode {episodeNumber}.</p>
               <p className="text-xs text-gray-500 mt-1">Be the first to start the conversation!</p>
             </div>

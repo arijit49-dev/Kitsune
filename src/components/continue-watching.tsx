@@ -111,13 +111,13 @@ const ContinueWatching = (props: Props) => {
 const LoadingSkeleton = () => {
   return (
     <Container className="flex flex-col gap-5 py-10 items-center lg:items-start lg:mt-[10.125rem] z-20 ">
-      <div className="h-10 w-[15.625rem] animate-pulse bg-slate-800 rounded"></div>
+      <div className="h-10 w-[15.625rem] animate-pulse bg-white/5 rounded"></div>
       <div className="no-scrollbar flex w-full gap-4 overflow-x-auto pb-2">
         {[1, 1, 1, 1, 1, 1, 1].map((_, idx) => {
           return (
             <div
               key={idx}
-              className="shrink-0 rounded-2xl h-[18rem] w-[12rem] animate-pulse bg-slate-800"
+              className="shrink-0 rounded-2xl h-[18rem] w-[12rem] animate-pulse bg-white/5"
             ></div>
           );
         })}

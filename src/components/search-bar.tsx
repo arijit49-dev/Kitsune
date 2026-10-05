@@ -94,7 +94,7 @@ const SearchBar = ({
                 return (
                   <div
                     key={idx}
-                    className="flex items-center gap-2 rounded-md p-2 bg-slate-700 animate-pulse"
+                    className="flex items-center gap-2 rounded-md p-2 bg-white/5 animate-pulse"
                   >
                     <div className="min-h-[6.25rem] min-w-[5rem] overflow-hidden rounded-md"></div>
                   </div>
@@ -153,7 +153,7 @@ const SearchBar = ({
                 return (
                   <div
                     key={idx}
-                    className="flex items-center gap-2 rounded-md p-2 bg-slate-700 animate-pulse"
+                    className="flex items-center gap-2 rounded-md p-2 bg-white/5 animate-pulse"
                   >
                     <div className="min-h-[2.25rem] min-w-[1.875rem] overflow-hidden rounded-md"></div>
                   </div>

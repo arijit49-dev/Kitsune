@@ -89,7 +89,9 @@ const AnimeEpisodes = ({ animeId }: Props) => {
   return (
     <>
       <div className="flex w-full items-center justify-between">
-        <h3 className="text-xl font-semibold">Episodes</h3>
+        <h3 className="text-sm font-bold uppercase tracking-[0.18em] text-gray-400">
+          Episodes
+        </h3>
         <div className="flex items-center gap-2">
           {ranges.length > 0 && (
             <Select onValueChange={handleRangeChange} value={selectedRange}>
@@ -130,7 +132,7 @@ const AnimeEpisodes = ({ animeId }: Props) => {
           />
         ))}
         {!episodes.length && !isLoading && (
-          <div className="lg:col-span-5 col-span-2 sm:col-span-3 md:col-span-4 xl:col-span-6 2xl:col-span-7 flex items-center justify-center py-10 bg-slate-900 rounded-md">
+          <div className="col-span-2 flex items-center justify-center rounded-2xl border border-white/5 bg-[#141414] py-10 sm:col-span-3 md:col-span-4 lg:col-span-5 xl:col-span-6 2xl:col-span-7">
             No Episodes
           </div>
         )}
@@ -139,7 +141,7 @@ const AnimeEpisodes = ({ animeId }: Props) => {
             <div
               key={idx}
               className={cn([
-                "h-[6.25rem] rounded-lg cursor-pointer w-full flex items-center justify-center animate-pulse bg-slate-800",
+                "flex h-[6.25rem] w-full cursor-pointer items-center justify-center rounded-xl animate-pulse bg-white/5",
                 "self-center justify-self-center",
               ])}
             ></div>

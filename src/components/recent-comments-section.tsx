@@ -39,7 +39,7 @@ const RecentCommentsSection = () => {
           {[1, 2, 3, 4].map((i) => (
             <div
               key={i}
-              className="h-40 bg-slate-800/60 animate-pulse rounded-2xl border border-white/5"
+              className="h-40 bg-white/5 animate-pulse rounded-2xl border border-white/5"
             ></div>
           ))}
         </div>
@@ -69,7 +69,7 @@ const RecentCommentsSection = () => {
                         className="h-8 w-8 rounded-full shrink-0"
                       />
                     ) : (
-                      <div className="h-8 w-8 rounded-full bg-slate-800 flex items-center justify-center text-xs text-gray-400 font-bold shrink-0">
+                      <div className="h-8 w-8 rounded-full bg-white/5 flex items-center justify-center text-xs text-gray-400 font-bold shrink-0">
                         ?
                       </div>
                     )}
