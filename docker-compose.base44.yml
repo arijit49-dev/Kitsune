@@ -44,21 +44,6 @@ services:
       start_period: 15s
     restart: on-failure
 
-  pocketbase-init:
-    image: python:3.11-slim
-    depends_on:
-      pocketbase:
-        condition: service_healthy
-    volumes:
-      - ./docs/pb.json:/pb_collections.json:ro
-      - ./pocketbase/init-collections.py:/init-collections.py:ro
-    environment:
-      - PB_URL=http://pocketbase:8090
-      - PB_ADMIN_EMAIL=admin@kitsune.local
-      - PB_ADMIN_PASSWORD=admin123456
-    command: ["python", "/init-collections.py"]
-    restart: "no"
-
   api:
     build:
       context: ./miruro-api
