@@ -69,8 +69,8 @@ const EpisodeCard = ({
         <div
           className={cn([
             "h-[5.25rem] rounded-lg cursor-pointer w-full flex items-center justify-center bg-secondary md:text-base text-xs font-semibold transition-all",
-            isSelected && "bg-[#e9376b] text-white shadow-md font-bold",
-            !isSelected && hasWatchedEpisode && "bg-slate-900 text-gray-400",
+            isSelected && "bg-[#8b5cf6] text-white shadow-md font-bold",
+            !isSelected && hasWatchedEpisode && "bg-[#141414] text-gray-400",
           ])}
         >
           {`Episode ${props.episode.number}`}
@@ -86,9 +86,9 @@ const EpisodeCard = ({
           className={cn([
             "flex gap-3 items-center justify-between w-full h-fit rounded-lg p-2.5 transition-all cursor-pointer text-xs md:text-sm font-medium",
             isSelected
-              ? "bg-[#e9376b] text-white font-bold shadow-md ring-1 ring-[#e9376b]/50"
+              ? "bg-[#8b5cf6] text-white font-bold shadow-md ring-1 ring-[#8b5cf6]/50"
               : hasWatchedEpisode
-                ? "bg-slate-900/80 text-gray-400 hover:bg-slate-800"
+                ? "bg-white/5 text-gray-400 hover:bg-white/10"
                 : "bg-secondary/40 text-gray-300 hover:bg-secondary/70 hover:text-white",
           ])}
         >

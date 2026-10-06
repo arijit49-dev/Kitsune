@@ -96,7 +96,7 @@ function ProfilePage() {
   if (isError || !targetUser) {
     return (
       <Container className="min-h-[70vh] mt-24 flex flex-col items-center justify-center text-center">
-        <UserX className="h-16 w-16 text-slate-600 mb-4" />
+        <UserX className="h-16 w-16 text-gray-600 mb-4" />
         <h2 className="text-2xl font-bold text-white mb-2">User Not Found</h2>
         <p className="text-sm text-gray-400 mb-6">
           The user profile &quot;@{username}&quot; does not exist or has been removed.
@@ -161,7 +161,7 @@ function ProfilePage() {
           <div className="flex flex-col items-center">
             <h2 className="text-xl font-bold text-white">@{targetUser.username}</h2>
             {isOwner && (
-              <span className="text-[11px] font-semibold text-[#e9376b] bg-[#e9376b]/10 px-2.5 py-0.5 rounded-full border border-[#e9376b]/20 mt-1">
+              <span className="text-[11px] font-semibold text-[#8b5cf6] bg-[#8b5cf6]/10 px-2.5 py-0.5 rounded-full border border-[#8b5cf6]/20 mt-1">
                 Your Profile
               </span>
             )}

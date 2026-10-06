@@ -196,11 +196,11 @@ const ActivityProgression = ({ targetUser }: Props) => {
     <div className="flex flex-col gap-6 w-full my-10">
       <div className="flex flex-col lg:flex-row gap-8 items-start w-full">
         {/* Left / Main Section: Heatmap & Activity List */}
-        <div className="flex-1 w-full bg-[#0f172a]/60 p-6 rounded-2xl border border-slate-800 shadow-md">
+        <div className="flex-1 w-full bg-[#141414] p-6 rounded-2xl border border-white/5 shadow-md">
           <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
             <div>
               <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                <Tv className="h-5 w-5 text-[#e9376b]" />
+                <Tv className="h-5 w-5 text-[#8b5cf6]" />
                 Watched {totalEpisodesCount} episodes in {selectedYear}
               </h3>
               <p className="text-xs text-gray-400 mt-1">
@@ -211,7 +211,7 @@ const ActivityProgression = ({ targetUser }: Props) => {
             {selectedDate && (
               <button
                 onClick={() => setSelectedDate(null)}
-                className="flex items-center gap-1.5 px-3 py-1 bg-slate-800 text-xs font-semibold text-gray-300 rounded-lg hover:bg-slate-700 transition"
+                className="flex items-center gap-1.5 px-3 py-1 bg-white/5 text-xs font-semibold text-gray-300 rounded-lg hover:bg-white/10 transition"
               >
                 Showing {new Date(selectedDate).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
                 <X className="h-3.5 w-3.5 text-red-400" />
@@ -221,7 +221,7 @@ const ActivityProgression = ({ targetUser }: Props) => {
 
           {/* Calendar Heatmap */}
           {isLoading ? (
-            <div className="h-28 w-full animate-pulse bg-slate-800/80 rounded-xl mb-8"></div>
+            <div className="h-28 w-full animate-pulse bg-white/5 rounded-xl mb-8"></div>
           ) : (
             <div className="mb-8 overflow-x-auto pb-2">
               <CalendarHeatmap
@@ -246,9 +246,9 @@ const ActivityProgression = ({ targetUser }: Props) => {
           )}
 
           {/* Activity Progression Feed Header */}
-          <div className="border-t border-slate-800 pt-6">
+          <div className="border-t border-white/5 pt-6">
             <h4 className="text-sm font-bold text-gray-300 uppercase tracking-wider mb-4 flex items-center gap-2">
-              <Clock className="h-4 w-4 text-[#e9376b]" />
+              <Clock className="h-4 w-4 text-[#8b5cf6]" />
               {selectedDate
                 ? `Activity on ${new Date(selectedDate).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}`
                 : `${selectedYear} Activity Activity Timeline`}
@@ -258,7 +258,7 @@ const ActivityProgression = ({ targetUser }: Props) => {
             {isLoading ? (
               <div className="flex flex-col gap-3">
                 {[1, 2, 3].map((i) => (
-                  <div key={i} className="h-16 bg-slate-800/60 animate-pulse rounded-xl"></div>
+                  <div key={i} className="h-16 bg-white/5 animate-pulse rounded-xl"></div>
                 ))}
               </div>
             ) : filteredActivities.length > 0 ? (
@@ -278,7 +278,7 @@ const ActivityProgression = ({ targetUser }: Props) => {
                   return (
                     <div
                       key={act.id}
-                      className="flex items-center justify-between bg-slate-900/60 p-3.5 rounded-xl border border-slate-800/80 hover:border-slate-700 transition group"
+                      className="flex items-center justify-between bg-white/5 p-3.5 rounded-xl border border-white/10 hover:border-white/10 transition group"
                     >
                       <div className="flex items-center gap-3.5 min-w-0">
                         {act.thumbnail ? (
@@ -286,19 +286,19 @@ const ActivityProgression = ({ targetUser }: Props) => {
                           <img
                             src={act.thumbnail}
                             alt={act.animeTitle}
-                            className="h-11 w-11 object-cover rounded-lg shrink-0 border border-slate-800"
+                            className="h-11 w-11 object-cover rounded-lg shrink-0 border border-white/5"
                           />
                         ) : (
-                          <div className="h-11 w-11 bg-slate-800 rounded-lg flex items-center justify-center shrink-0">
+                          <div className="h-11 w-11 bg-white/5 rounded-lg flex items-center justify-center shrink-0">
                             <Tv className="h-5 w-5 text-gray-500" />
                           </div>
                         )}
                         <div className="flex flex-col min-w-0">
-                          <span className="text-sm font-bold text-white truncate group-hover:text-[#e9376b] transition">
+                          <span className="text-sm font-bold text-white truncate group-hover:text-[#8b5cf6] transition">
                             Watched Episode {act.episodeNumber} of {act.animeTitle}
                           </span>
                           <span className="text-xs text-gray-400 mt-0.5 flex items-center gap-1.5">
-                            <Calendar className="h-3 w-3 text-slate-500" />
+                            <Calendar className="h-3 w-3 text-gray-500" />
                             {dateFormatted} at {timeFormatted}
                           </span>
                         </div>
@@ -306,7 +306,7 @@ const ActivityProgression = ({ targetUser }: Props) => {
 
                       <Link
                         href={`/anime/watch?anime=${act.animeId}&ep=${act.episodeNumber}`}
-                        className="flex items-center gap-1 text-xs font-bold text-gray-400 group-hover:text-[#e9376b] transition shrink-0 pl-3"
+                        className="flex items-center gap-1 text-xs font-bold text-gray-400 group-hover:text-[#8b5cf6] transition shrink-0 pl-3"
                       >
                         Watch <ChevronRight className="h-4 w-4" />
                       </Link>
@@ -315,7 +315,7 @@ const ActivityProgression = ({ targetUser }: Props) => {
                 })}
               </div>
             ) : (
-              <div className="p-6 text-center text-xs text-gray-500 bg-slate-900/40 rounded-xl border border-slate-800">
+              <div className="p-6 text-center text-xs text-gray-500 bg-white/5 rounded-xl border border-white/5">
                 No activity recorded for this period.
               </div>
             )}
@@ -324,7 +324,7 @@ const ActivityProgression = ({ targetUser }: Props) => {
 
         {/* Right Section: GitHub-style Vertical Year Tabs & Joined Milestone */}
         <div className="flex flex-col gap-4 w-full lg:w-64 shrink-0">
-          <div className="flex flex-col bg-[#0f172a]/60 p-3 rounded-2xl border border-slate-800 shadow-md">
+          <div className="flex flex-col bg-[#141414] p-3 rounded-2xl border border-white/5 shadow-md">
             <span className="text-xs font-bold text-gray-400 uppercase tracking-wider px-3 py-2">
               Select Year
             </span>
@@ -340,8 +340,8 @@ const ActivityProgression = ({ targetUser }: Props) => {
                     }}
                     className={`flex items-center justify-between px-3.5 py-2 rounded-xl text-xs font-bold transition ${
                       isSelected
-                        ? "bg-[#e9376b] text-white shadow-md"
-                        : "text-gray-400 hover:bg-slate-800 hover:text-white"
+                        ? "bg-[#8b5cf6] text-white shadow-md"
+                        : "text-gray-400 hover:bg-white/10 hover:text-white"
                     }`}
                   >
                     <span>{year}</span>
@@ -353,13 +353,13 @@ const ActivityProgression = ({ targetUser }: Props) => {
           </div>
 
           {/* First Joined Milestone Card */}
-          <div className="flex items-center gap-3 bg-gradient-to-r from-purple-950/40 to-slate-900/60 p-4 rounded-2xl border border-purple-900/40 shadow-sm">
+          <div className="flex items-center gap-3 bg-gradient-to-r from-violet-950/40 to-[#141414] p-4 rounded-2xl border border-violet-900/40 shadow-sm">
             <div className="h-10 w-10 rounded-xl bg-purple-600/20 border border-purple-500/30 flex items-center justify-center shrink-0">
               <Sparkles className="h-5 w-5 text-purple-400" />
             </div>
             <div className="flex flex-col">
               <span className="text-xs font-bold text-purple-300 uppercase tracking-wider">
-                Joined Kitsune
+                Joined Mekko Streams
               </span>
               <span className="text-xs text-gray-300 font-semibold mt-0.5">
                 First joined in {formattedJoinedDate}

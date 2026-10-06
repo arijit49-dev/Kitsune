@@ -117,7 +117,8 @@ const Page = () => {
         <WatchTrailer
           videoHref={anime.anime.info.promotionalVideos[0]?.source}
         />
-        <div className="absolute h-full w-full inset-0 m-auto bg-gradient-to-r from-slate-900 to-transparent"></div>
+        <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent"></div>
+        <div className="absolute inset-0 h-full w-full bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent"></div>
       </div>
       <Container className="z-50 md:space-y-10 pb-20">
         <div className="flex md:mt-[-9.375rem] mt-[-6.25rem] md:flex-row flex-col md:items-end md:gap-20 gap-10 ">
@@ -130,7 +131,10 @@ const Page = () => {
             className="shrink-0"
           />
           <div className="flex flex-col md:gap-5 gap-2 pb-16">
-            <h1 className="md:text-5xl text-2xl md:font-black font-extrabold z-[9]">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-violet-400">
+              {anime.anime.info.stats.type || "Anime"}
+            </span>
+            <h1 className="z-[9] text-2xl font-extrabold text-white md:text-5xl md:font-black">
               {anime.anime.info.name}
             </h1>
             <div className="flex items-center gap-5">
@@ -148,7 +152,7 @@ const Page = () => {
           </div>
         </div>
         <Tabs defaultValue="overview" className="w-full">
-          <TabsList className="flex items-center justify-start w-fit text-2xl h-fit">
+          <TabsList className="flex h-fit w-fit items-center justify-start border-b border-white/5 text-2xl">
             <TabsTrigger
               value="overview"
               className="md:text-2xl text-lg font-semibold"
@@ -184,33 +188,43 @@ const Page = () => {
             value="overview"
             className="w-full grid md:grid-cols-5 grid-cols-1 gap-x-20 gap-y-5 mt-10"
           >
-            <div className="col-span-1 flex flex-col gap-5 w-full">
-              <h3 className="text-xl font-semibold">Details</h3>
-              <div className="grid grid-cols-2 w-full md:text-base text-xs gap-y-2 gap-x-20 md:gap-x-0">
-                <h3>Aired</h3>
-                <span>{anime.anime.moreInfo.aired}</span>
+            <div className="col-span-1 flex w-full flex-col gap-5 rounded-2xl border border-white/5 bg-[#141414] p-5">
+              <h3 className="text-sm font-bold uppercase tracking-[0.18em] text-gray-400">
+                Details
+              </h3>
+              <div className="grid w-full grid-cols-2 gap-x-20 gap-y-3 text-xs md:gap-x-0 md:text-sm">
+                <h3 className="text-gray-500">Aired</h3>
+                <span className="text-white">{anime.anime.moreInfo.aired}</span>
 
-                <h3>Rating</h3>
-                <span>{anime.anime.info.stats.rating}</span>
+                <h3 className="text-gray-500">Rating</h3>
+                <span className="text-white">
+                  {anime.anime.info.stats.rating}
+                </span>
 
-                <h3>Genres</h3>
-                <span>{anime.anime.moreInfo.genres.join(", ")}</span>
+                <h3 className="text-gray-500">Genres</h3>
+                <span className="text-white">
+                  {anime.anime.moreInfo.genres.join(", ")}
+                </span>
 
-                <h3>Type</h3>
-                <span>{anime.anime.info.stats.type}</span>
+                <h3 className="text-gray-500">Type</h3>
+                <span className="text-white">{anime.anime.info.stats.type}</span>
 
-                <h3>Status</h3>
-                <span>{anime.anime.moreInfo.status}</span>
+                <h3 className="text-gray-500">Status</h3>
+                <span className="text-white">{anime.anime.moreInfo.status}</span>
 
-                <h3>Season</h3>
-                <span className="capitalize">{}</span>
+                <h3 className="text-gray-500">Season</h3>
+                <span className="text-white capitalize">{}</span>
 
-                <h3>Studios</h3>
-                <span>{anime.anime.moreInfo.studios}</span>
+                <h3 className="text-gray-500">Studios</h3>
+                <span className="text-white">
+                  {anime.anime.moreInfo.studios}
+                </span>
               </div>
             </div>
             <div className="col-span-4 flex flex-col gap-5">
-              <h3 className="text-xl font-semibold">Description</h3>
+              <h3 className="text-sm font-bold uppercase tracking-[0.18em] text-gray-400">
+                Description
+              </h3>
               <div className="md:text-base text-xs leading-6 text-gray-300">
                 {parse(anime.anime.info.description || "")}
               </div>
@@ -221,7 +235,9 @@ const Page = () => {
             value="relations"
             className="w-full flex flex-col gap-5 "
           >
-            <h3 className="text-xl font-semibold">Relations</h3>
+            <h3 className="text-sm font-bold uppercase tracking-[0.18em] text-gray-400">
+              Relations
+            </h3>
             <div className="grid lg:grid-cols-5 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-7 w-full gap-5 content-center">
               {anime.seasons.map((relation, idx) => {
                 return (
@@ -248,7 +264,9 @@ const Page = () => {
               value="characters"
               className="w-full flex flex-col gap-5 "
             >
-              <h3 className="text-xl font-semibold">Anime Characters</h3>
+              <h3 className="text-sm font-bold uppercase tracking-[0.18em] text-gray-400">
+                Anime Characters
+              </h3>
               <div className="grid lg:grid-cols-5 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-7 w-full gap-5 content-center">
                 {anime.anime.info.charactersVoiceActors.map(
                   (character, idx) => {

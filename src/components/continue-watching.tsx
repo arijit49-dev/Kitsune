@@ -9,6 +9,7 @@ import { IAnime } from "@/types/anime";
 import { History } from "lucide-react";
 import useBookMarks, { WatchHistory } from "@/hooks/use-get-bookmark";
 import { useAuthStore } from "@/store/auth-store";
+import SectionHeading from "./section-heading";
 
 type Props = {
   loading: boolean;
@@ -78,25 +79,28 @@ const ContinueWatching = (props: Props) => {
 
   return (
     <Container className="flex flex-col gap-5 py-10 items-center lg:items-start">
-      <div className="flex items-center gap-2">
-        <History />
-        <h5 className="text-2xl font-bold">Continue Watching</h5>
-      </div>
-      <div className="grid lg:grid-cols-5 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-7 w-full gap-5 content-center">
+      <SectionHeading
+        eyebrow="Pick Up Where You Left Off"
+        title="Continue Watching"
+        icon={<History />}
+      />
+      <div className="no-scrollbar flex w-full snap-x gap-4 overflow-x-auto pb-2">
         {anime?.map(
           (ani, idx) =>
             ani.episode && (
-              <BlurFade key={idx} delay={idx * 0.05} inView>
-                <AnimeCard
-                  title={ani.name}
-                  poster={ani.poster}
-                  className="self-center justify-self-center"
-                  href={`${ROUTES.WATCH}?anime=${ani.id}&ep=${typeof ani.episode !== "string" ? ani.episode.episodeNumber : 1}`}
-                  watchDetail={
-                    typeof ani.episode !== "string" ? ani.episode : null
-                  }
-                />
-              </BlurFade>
+              <div key={idx} className="shrink-0 snap-start">
+                <BlurFade delay={idx * 0.05} inView>
+                  <AnimeCard
+                    title={ani.name}
+                    poster={ani.poster}
+                    className="self-center justify-self-center"
+                    href={`${ROUTES.WATCH}?anime=${ani.id}&ep=${typeof ani.episode !== "string" ? ani.episode.episodeNumber : 1}`}
+                    watchDetail={
+                      typeof ani.episode !== "string" ? ani.episode : null
+                    }
+                  />
+                </BlurFade>
+              </div>
             ),
         )}
       </div>
@@ -107,13 +111,13 @@ const ContinueWatching = (props: Props) => {
 const LoadingSkeleton = () => {
   return (
     <Container className="flex flex-col gap-5 py-10 items-center lg:items-start lg:mt-[10.125rem] z-20 ">
-      <div className="h-10 w-[15.625rem] animate-pulse bg-slate-700"></div>
-      <div className="grid lg:grid-cols-5 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-7 w-full gap-5 content-center">
-        {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((_, idx) => {
+      <div className="h-10 w-[15.625rem] animate-pulse bg-white/5 rounded"></div>
+      <div className="no-scrollbar flex w-full gap-4 overflow-x-auto pb-2">
+        {[1, 1, 1, 1, 1, 1, 1].map((_, idx) => {
           return (
             <div
               key={idx}
-              className="rounded-xl h-[15.625rem] min-w-[10.625rem] max-w-[12.625rem] md:h-[18.75rem] md:max-w-[12.5rem] animate-pulse bg-slate-700"
+              className="shrink-0 rounded-2xl h-[18rem] w-[12rem] animate-pulse bg-white/5"
             ></div>
           );
         })}

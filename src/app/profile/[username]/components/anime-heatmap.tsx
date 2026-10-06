@@ -170,8 +170,8 @@ function AnimeHeatmap() {
   if (isLoading) {
     return (
       <div className="flex flex-col gap-4 w-full py-4">
-        <div className="h-6 w-56 animate-pulse bg-slate-800 rounded-md"></div>
-        <div className="h-28 w-full animate-pulse bg-slate-800/80 rounded-xl border border-slate-800"></div>
+        <div className="h-6 w-56 animate-pulse bg-white/5 rounded-md"></div>
+        <div className="h-28 w-full animate-pulse bg-white/5 rounded-xl border border-white/5"></div>
       </div>
     );
   }

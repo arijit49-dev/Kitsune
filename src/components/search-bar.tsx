@@ -59,10 +59,13 @@ const SearchBar = ({
 
   return (
     <div className={cn([" relative w-full min-h-fit", className])}>
-        <SearchIcon suppressHydrationWarning className="absolute inset-y-0 left-2 m-auto h-4 w-4" />
+        <SearchIcon
+          suppressHydrationWarning
+          className="absolute inset-y-0 left-3 m-auto h-4 w-4 text-gray-500"
+        />
       <Input
-        className="w-full h-10 pl-8 text-white border-white"
-        placeholder="Enter your keywords to search..."
+        className="h-10 w-full rounded-full border-white/10 bg-white/5 pl-9 text-white placeholder:text-gray-500 focus-visible:ring-violet-500/50"
+        placeholder="Search the archive..."
         onChange={(e) => setSearchValue(e.target.value)}
         onFocus={() => setIsFocused(true)}
         onBlur={handleBlur}
@@ -70,8 +73,8 @@ const SearchBar = ({
         onKeyDown={handleKeyDown}
       />
       <Button
-        variant="secondary"
-        className="absolute  text-white right-2 top-1/2 -translate-y-1/2 h-2/3"
+        variant="ghost"
+        className="absolute right-1.5 top-1/2 h-8 -translate-y-1/2 text-gray-400 hover:bg-white/10 hover:text-white"
         onClick={() => {
           router.push(ROUTES.SEARCH + '?q=""');
         }}
@@ -91,7 +94,7 @@ const SearchBar = ({
                 return (
                   <div
                     key={idx}
-                    className="flex items-center gap-2 rounded-md p-2 bg-slate-700 animate-pulse"
+                    className="flex items-center gap-2 rounded-md p-2 bg-white/5 animate-pulse"
                   >
                     <div className="min-h-[6.25rem] min-w-[5rem] overflow-hidden rounded-md"></div>
                   </div>
@@ -131,7 +134,7 @@ const SearchBar = ({
               className="w-full"
               href={`${ROUTES.SEARCH}?q=${encodeURIComponent(searchValue)}`}
             >
-              <Button className="w-full bg-[#e9376b] text-white">
+              <Button className="w-full bg-violet-600 text-white">
                 Show More
               </Button>
             </Link>
@@ -150,7 +153,7 @@ const SearchBar = ({
                 return (
                   <div
                     key={idx}
-                    className="flex items-center gap-2 rounded-md p-2 bg-slate-700 animate-pulse"
+                    className="flex items-center gap-2 rounded-md p-2 bg-white/5 animate-pulse"
                   >
                     <div className="min-h-[2.25rem] min-w-[1.875rem] overflow-hidden rounded-md"></div>
                   </div>

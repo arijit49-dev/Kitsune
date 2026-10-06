@@ -1,0 +1,17 @@
+{
+  "previewPort": 3000,
+  "healthPath": "/api/health",
+  "startCommand": "docker compose -f docker-compose.base44.yml up -d",
+  "secrets": [
+    {
+      "name": "GOOGLE_CLIENT_ID",
+      "description": "Google OAuth 2.0 client ID used by PocketBase to enable 'Sign in with Google'. Create an OAuth client (Web application) in the Google Cloud Console and add the redirect URI https://8090-<BASE44_PUBLIC_HOST_SUFFIX>/api/oauth2-redirect.",
+      "requiredAtBoot": false
+    },
+    {
+      "name": "GOOGLE_CLIENT_SECRET",
+      "description": "Google OAuth 2.0 client secret paired with GOOGLE_CLIENT_ID (Google Cloud Console > APIs & Services > Credentials).",
+      "requiredAtBoot": false
+    }
+  ]
+}

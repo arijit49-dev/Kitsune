@@ -101,9 +101,19 @@ const SearchResults = () => {
   };
 
   return (
-    <div className="flex flex-col gap-10 mt-28 lg:mt-36 pb-20 min-h-[75vh]">
-      <div className="bg-slate-800 bg-opacity-50 backdrop-blur-sm rounded-lg p-5 flex flex-col gap-5">
-        <p className="text-lg font-semibold">Filters</p>
+    <div className="flex flex-col gap-8 mt-28 lg:mt-36 pb-28 min-h-[75vh]">
+      <div className="flex flex-col gap-1">
+        <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-violet-400">
+          Browse
+        </span>
+        <h1 className="text-3xl font-black tracking-tight text-white md:text-4xl">
+          Search the Archive
+        </h1>
+      </div>
+      <div className="flex flex-col gap-5 rounded-2xl border border-white/5 bg-[#141414] p-6">
+        <p className="text-sm font-bold uppercase tracking-[0.18em] text-gray-400">
+          Filters
+        </p>
         <div className="flex flex-wrap gap-3">
           <Select
             options={types}
@@ -143,7 +153,9 @@ const SearchResults = () => {
           />
         </div>
         <div>
-          <p className="text-lg font-semibold mt-4">Genres</p>
+          <p className="text-sm font-bold uppercase tracking-[0.18em] text-gray-400 mt-4">
+            Genres
+          </p>
           <ToggleGroup
             type="multiple"
             className="flex flex-wrap justify-start gap-2 mt-4"
@@ -158,11 +170,11 @@ const SearchResults = () => {
                 key={genre.value}
                 size="sm"
                 className={cn(
-                  "border border-slate-700 hover:border-[#e9376b] hover:text-[#e9376b] hover:bg-transparent",
-                  "data-[state=on]:border-[#e9376b] data-[state=on]:text-white data-[state=on]:bg-[#e9376b]",
+                  "rounded-full border border-white/10 hover:border-violet-500 hover:text-violet-300 hover:bg-transparent",
+                  "data-[state=on]:border-violet-500 data-[state=on]:text-white data-[state=on]:bg-violet-600",
                   filters.genres?.split(",").includes(genre.value)
-                    ? "bg-[#e9376b] text-white"
-                    : "text-slate-300",
+                    ? "bg-violet-600 text-white"
+                    : "text-gray-300",
                 )}
               >
                 {genre.label}
@@ -173,14 +185,14 @@ const SearchResults = () => {
         <div className="flex items-center gap-2 mt-4">
           <Button
             size="sm"
-            className="w-[6.25rem] hover:bg-[#e9376b] bg-[#e9376b] text-white"
+            className="h-9 w-[7rem] rounded-full bg-violet-600 text-white hover:bg-violet-500"
             onClick={applyFilters}
           >
             Filter
           </Button>
           <Button
             size="sm"
-            className="w-[6.25rem]"
+            className="h-9 w-[7rem] rounded-full text-gray-400 hover:text-white"
             onClick={resetFilters}
             variant="link"
           >
@@ -188,15 +200,20 @@ const SearchResults = () => {
           </Button>
         </div>
       </div>
-      <div className="text-2xl font-semibold">
-        {displayPhrase === "" ? (
-          "Filter Results"
-        ) : (
-          <>
-            Search Results for{" "}
-            <span className="font-[800]">&quot;{params.q}&quot;</span>
-          </>
-        )}
+      <div className="flex flex-col gap-1">
+        <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-violet-400">
+          Results
+        </span>
+        <h2 className="text-xl font-bold text-white md:text-2xl">
+          {displayPhrase === "" ? (
+            "Filter Results"
+          ) : (
+            <>
+              Search Results for{" "}
+              <span className="font-extrabold">&quot;{params.q}&quot;</span>
+            </>
+          )}
+        </h2>
       </div>
       {isLoading && (
         <div className="grid lg:grid-cols-5 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-7 w-full gap-5 content-center">
@@ -204,7 +221,7 @@ const SearchResults = () => {
             return (
               <div
                 key={idx}
-                className="rounded-xl h-[15.625rem] min-w-[10.625rem] max-w-[12.625rem] md:h-[18.75rem] md:max-w-[12.5rem] animate-pulse bg-slate-700"
+                className="rounded-2xl h-[15.625rem] min-w-[10.625rem] max-w-[12.625rem] md:h-[18.75rem] md:max-w-[12.5rem] animate-pulse bg-white/5"
               ></div>
             );
           })}

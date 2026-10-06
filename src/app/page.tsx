@@ -20,6 +20,7 @@ const AnimeSections = dynamic(() => import("@/components/anime-sections"));
 import React, { useState, useMemo } from "react";
 
 import RecentCommentsSection from "@/components/recent-comments-section";
+import BottomNav from "@/components/bottom-nav";
 
 export default function Home() {
   const [trendingPage, setTrendingPage] = useState(1);
@@ -55,7 +56,7 @@ export default function Home() {
   );
 
   return (
-    <div className="flex flex-col bg-[#121212]">
+    <div className="flex flex-col bg-[#0a0a0a] pb-28">
       <HeroSection
         spotlightAnime={spotlightList}
         isDataLoading={isLoadingSpotlight}
@@ -85,6 +86,7 @@ export default function Home() {
 
       <AnimeSections
         title="Trending Anime"
+        eyebrow="What's Hot"
         animeList={trendingList}
         loading={isLoadingTrending}
         page={trendingPage}
@@ -98,12 +100,15 @@ export default function Home() {
 
       <AnimeSections
         title="Upcoming Animes"
+        eyebrow="Coming Soon"
         animeList={upcomingList}
         loading={isLoadingUpcoming}
         page={upcomingPage}
         hasNextPage={upcomingRes?.hasNextPage}
         onPageChange={(p) => setUpcomingPage(p)}
       />
+
+      <BottomNav />
     </div>
   );
 }

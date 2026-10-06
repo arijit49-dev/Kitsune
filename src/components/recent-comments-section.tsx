@@ -23,9 +23,12 @@ const RecentCommentsSection = () => {
   return (
     <Container className="space-y-6 my-12">
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <MessageSquare className="h-5 w-5 text-[#e9376b]" />
-          <h2 className="text-xl md:text-2xl font-bold text-white tracking-wide">
+        <div className="flex flex-col gap-1">
+          <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-violet-400">
+            Community
+          </span>
+          <h2 className="flex items-center gap-2 text-xl font-bold tracking-wide text-white md:text-2xl">
+            <MessageSquare className="h-5 w-5 text-violet-400" />
             Latest Activities
           </h2>
         </div>
@@ -36,7 +39,7 @@ const RecentCommentsSection = () => {
           {[1, 2, 3, 4].map((i) => (
             <div
               key={i}
-              className="h-40 bg-slate-800/60 animate-pulse rounded-xl border border-slate-800"
+              className="h-40 bg-white/5 animate-pulse rounded-2xl border border-white/5"
             ></div>
           ))}
         </div>
@@ -53,7 +56,7 @@ const RecentCommentsSection = () => {
             return (
               <div
                 key={comment.id}
-                className="flex flex-col justify-between bg-[#0f172a]/80 p-4 rounded-xl border border-slate-800 hover:border-slate-700 transition shadow-sm group"
+                className="flex flex-col justify-between bg-[#141414] p-4 rounded-2xl border border-white/5 hover:border-violet-500/40 transition shadow-sm group"
               >
                 <div className="flex flex-col gap-2.5">
                   {/* Header: User Info */}
@@ -66,7 +69,7 @@ const RecentCommentsSection = () => {
                         className="h-8 w-8 rounded-full shrink-0"
                       />
                     ) : (
-                      <div className="h-8 w-8 rounded-full bg-slate-800 flex items-center justify-center text-xs text-gray-400 font-bold shrink-0">
+                      <div className="h-8 w-8 rounded-full bg-white/5 flex items-center justify-center text-xs text-gray-400 font-bold shrink-0">
                         ?
                       </div>
                     )}
@@ -81,14 +84,14 @@ const RecentCommentsSection = () => {
                   </div>
 
                   {/* Anime Title & Ep Badge */}
-                  <div className="flex items-center justify-between gap-2 bg-slate-900/60 p-2 rounded-lg border border-slate-800/60">
+                  <div className="flex items-center justify-between gap-2 bg-black/40 p-2 rounded-lg border border-white/5">
                     <span
                       className="text-xs font-semibold text-gray-300 truncate"
                       title={comment.animeTitle}
                     >
                       {comment.animeTitle || "Anime"}
                     </span>
-                    <span className="text-[10px] font-bold bg-[#e9376b] text-white px-2 py-0.5 rounded shrink-0">
+                    <span className="text-[10px] font-bold bg-violet-600 text-white px-2 py-0.5 rounded shrink-0">
                       Ep {comment.episodeNumber}
                     </span>
                   </div>
@@ -122,7 +125,7 @@ const RecentCommentsSection = () => {
                 {/* Footer Link to Episode */}
                 <Link
                   href={`/anime/watch?anime=${comment.animeId}&ep=${comment.episodeNumber}`}
-                  className="flex items-center justify-center gap-1.5 mt-3 pt-2.5 border-t border-slate-800/80 text-xs font-bold text-gray-400 group-hover:text-[#e9376b] transition"
+                  className="flex items-center justify-center gap-1.5 mt-3 pt-2.5 border-t border-white/5 text-xs font-bold text-gray-400 group-hover:text-violet-400 transition"
                 >
                   <Play className="h-3 w-3 fill-current" /> Watch Episode{" "}
                   {comment.episodeNumber}

@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { Star } from "lucide-react";
 
 import { cn, formatSecondsToMMSS } from "@/lib/utils";
 import { Badge } from "./ui/badge";
@@ -45,7 +46,7 @@ const AnimeCard = ({
     <Link href={props.href as string}>
       <div
         className={cn([
-          "rounded-xl overflow-hidden relative cursor-pointer hover:scale-105 duration-300",
+          "group relative cursor-pointer overflow-hidden rounded-2xl ring-1 ring-white/5 transition duration-300 hover:scale-[1.03] hover:ring-violet-500/40",
           variant === "sm" &&
             "h-[12rem] min-[320px]:h-[16.625rem] sm:h-[18rem] max-w-[12.625rem] md:min-w-[12rem]",
           variant === "lg" &&
@@ -63,9 +64,19 @@ const AnimeCard = ({
         />
         {displayDetails && (
           <>
-            <div className="absolute inset-0 m-auto h-full w-full bg-gradient-to-t from-accent to-transparent"></div>
-            <div className="absolute bottom-0 flex flex-col gap-1 px-4 pb-3 w-full">
-              <h5 className="line-clamp-1 font-bold text-sm text-white">{props.title}</h5>
+            <div className="absolute inset-0 h-full w-full bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+
+            {!!props.score && (
+              <div className="absolute right-2 top-2 flex items-center gap-1 rounded-full bg-black/70 px-2 py-0.5 text-[11px] font-semibold text-white backdrop-blur-sm">
+                <Star className="h-3 w-3 fill-violet-400 text-violet-400" />
+                {(props.score / 10).toFixed(1)}
+              </div>
+            )}
+
+            <div className="absolute bottom-0 flex w-full flex-col gap-1 px-3 pb-3">
+              <h5 className="line-clamp-1 text-sm font-bold text-white">
+                {props.title}
+              </h5>
               {props.watchDetail && (
                 <>
                   <p className="text-xs text-gray-400">
@@ -76,21 +87,16 @@ const AnimeCard = ({
                   <Progress value={percentage} />
                 </>
               )}
-              <div className="flex flex-wrap items-center gap-1.5 mt-0.5">
+              <div className="mt-0.5 flex flex-wrap items-center gap-1.5">
                 {props.episodeCard && !!props.episodes && (
-                  <Badge className="bg-[#e9376b] text-white text-[10px] px-1.5 py-0.5">
+                  <Badge className="rounded-full bg-violet-600 px-1.5 py-0.5 text-[10px] text-white">
                     Ep {props.episodes}
                   </Badge>
                 )}
                 {props.format && (
-                  <Badge variant="outline" className="text-gray-300 border-gray-600 text-[10px] px-1.5 py-0.5">
+                  <Badge className="rounded-full border-0 bg-black/60 px-1.5 py-0.5 text-[10px] text-gray-200 backdrop-blur">
                     {props.format}
                   </Badge>
-                )}
-                {!!props.score && (
-                  <span className="text-[11px] font-semibold text-yellow-400 ml-auto">
-                    ⭐ {props.score}%
-                  </span>
                 )}
               </div>
             </div>
@@ -102,4 +108,3 @@ const AnimeCard = ({
 };
 
 export default AnimeCard;
-
